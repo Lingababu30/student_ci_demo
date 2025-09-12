@@ -18,7 +18,7 @@ pipeline {
 
     /* 2) BUILD & RUN — on Windows Agent (label: win) */
     stage('Build on Windows Agent') {
-      agent { label 'win' }
+      agent { label 'agent1' }
       steps {
         bat """
         if exist out rmdir /s /q out
@@ -41,7 +41,7 @@ pipeline {
           }
         }
         stage('Agent lane') {
-          agent { label 'win' }
+          agent { label 'agent1' }
           steps {
             bat "echo PARALLEL NODE = %NODE_NAME%"
           }
