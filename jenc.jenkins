@@ -18,7 +18,7 @@ pipeline {
 
     /* 2) BUILD & RUN — on Windows Agent (label: win) */
     stage('Build on Windows Agent') {
-      agent { label 'agent1' }
+      agent { label 'win' }
       steps {
         bat """
         if exist out rmdir /s /q out
@@ -41,7 +41,7 @@ pipeline {
           }
         }
         stage('Agent lane') {
-          agent { label 'agent1' }
+          agent { label 'win' }
           steps {
             bat "echo PARALLEL NODE = %NODE_NAME%"
           }
@@ -53,7 +53,9 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: 'artifact.txt, out/**', allowEmptyArchive: false
+        node('win'){
+      archiveArtifacts artifacts: 'artifact.txt, out/', allowEmptyArchive: false
+       }
     }
   }
 }
