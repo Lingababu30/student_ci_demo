@@ -6,5 +6,6 @@ System.out.println("Hello from Pipeline CI!");
     System.out.println("ngriok demo");
     System.out.println("checking webhook");
       System.out.println("checked");
+   System.out.println("checked after master-slave");
 }
 }
